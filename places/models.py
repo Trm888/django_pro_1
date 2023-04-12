@@ -24,7 +24,7 @@ class Image(models.Model):
     )
     image_number = models.IntegerField()
 
-    image = models.ImageField(upload_to=None)
+    image = models.ImageField()
 
     def __str__(self):
         return f'{self.image_number} {self.place.title}'
