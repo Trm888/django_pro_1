@@ -14,3 +14,21 @@ class Place(models.Model):
     class Meta:
         verbose_name = 'PLACE'
         verbose_name_plural = 'PLACES'
+
+class Image(models.Model):
+    place = models.ForeignKey(
+        Place,
+        on_delete=models.CASCADE,
+        verbose_name='Место',
+        related_name='images'
+    )
+    image_number = models.IntegerField()
+
+    image = models.ImageField(upload_to=None)
+
+    def __str__(self):
+        return f'{self.image_number} {self.place.title}'
+
+    class Meta:
+        verbose_name = 'IMAGE'
+        verbose_name_plural = 'IMAGES'
