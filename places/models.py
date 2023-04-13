@@ -25,7 +25,7 @@ class Image(models.Model):
         verbose_name='Место',
         related_name='images'
     )
-    image_number = models.IntegerField(validators=[
+    image_number = models.PositiveIntegerField(validators=[
         MinValueValidator(1)
     ])
 
@@ -37,3 +37,4 @@ class Image(models.Model):
     class Meta:
         verbose_name = 'IMAGE'
         verbose_name_plural = 'IMAGES'
+        ordering = ['image_number', 'place']
