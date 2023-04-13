@@ -1,13 +1,20 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.template import loader
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 
 from places.models import Place
 
+
 def place(request, place_id):
     place = get_object_or_404(Place, pk=place_id)
-    return HttpResponse(place.title)
+    detailsUrl = {"title": place.title,
+                  'imgs': [image.image.url for image in place.images.all()],
+                  'description_short': place.short_description,
+                  'description_long': place.long_description,
+                  'coordinates': {'lat': place.lat, 'lng': place.lon}}
+    response = JsonResponse(detailsUrl, safe=False, json_dumps_params={'ensure_ascii': False, 'indent': 4})
+    return response
+
 
 def index(request):
     places = Place.objects.all()
@@ -26,7 +33,6 @@ def index(request):
             }
         })
     places_geojson = {"type": "FeatureCollection",
-               "features": features}
+                      "features": features}
     data = {'places_geojson': places_geojson}
     return render(request, 'index.html', context=data)
-

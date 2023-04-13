@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
@@ -22,7 +23,9 @@ class Image(models.Model):
         verbose_name='Место',
         related_name='images'
     )
-    image_number = models.IntegerField()
+    image_number = models.IntegerField(validators=[
+            MinValueValidator(1)
+        ])
 
     image = models.ImageField()
 

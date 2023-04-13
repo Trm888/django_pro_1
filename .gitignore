@@ -138,3 +138,5 @@ dmypy.json
 cython_debug/
 
 .idea
+/static/.gitbook/assets/debug-option.png
+/static/.gitbook/assets/site.png
