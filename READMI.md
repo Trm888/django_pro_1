@@ -52,7 +52,7 @@ python manage.py createsuperuser
 ### Заполнение БД
 
 Существует возможность заполнить БД тестовыми данными. Для этого нужно скачать архив с тестовыми данными по ссылке https://github.com/devmanorg/where-to-go-places
-
+Также данные находятся в папке `where-to-go-places-master` в репозитории.
 Распаковать архив в папку с проектом.
 
 
@@ -62,7 +62,7 @@ python manage.py load_place 'путь к папке с файлами'
 ```
 Пример:
 ```sh
-python manage.py load_place 'where-to-go-places/places'
+python manage.py load_place 'where-to-go-places-master/places'
 ```
 
 
