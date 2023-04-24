@@ -12,7 +12,6 @@ class ImageAdmin(admin.ModelAdmin):
     def get_preview(self, obj):
         return format_html(
             "<img src={} height={height} />", obj.image.url, height=200)
-            # '<img src="{}" height={height} />'.format(obj.image.url, height=200))
 
 
 class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
