@@ -11,7 +11,7 @@ from places.models import Place, Image
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('-f_n', '--folder_name', type=str, help='Папка с файлами',
-                            default='where-to-go-places-master/places')
+                            default='examples_JSON_files_with_places')
 
     def handle(self, *args, **options):
         folder_name = options.get('folder_name')
@@ -30,10 +30,12 @@ def load_place(folder_name):
             place = json.load(file)
             obj, created = Place.objects.get_or_create(
                 title=place['title'],
-                short_description=place['description_short'],
-                long_description=place['description_long'],
-                lat=place['coordinates']['lng'],
-                lon=place['coordinates']['lat'],
+                defaults={
+                    'short_description': place['description_short'],
+                    'long_description': place['description_long'],
+                    'lat': place['coordinates']['lng'],
+                    'lon': place['coordinates']['lat']
+                }
             )
             for index, img_url in enumerate(place['imgs'], start=1):
                 img_name = os.path.basename(img_url)
@@ -47,5 +49,3 @@ def load_place(folder_name):
                 except requests.exceptions.HTTPError:
                     print(f"URL '{img_url}' не существует")
                     continue
-
-
