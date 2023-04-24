@@ -14,8 +14,8 @@ class Place(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = 'PLACE'
-        verbose_name_plural = 'PLACES'
+        verbose_name = 'МЕСТО'
+        verbose_name_plural = 'МЕСТА'
 
 
 class Image(models.Model):
@@ -35,7 +35,7 @@ class Image(models.Model):
         return f'{self.image_number} {self.place.title}'
 
     class Meta:
-        verbose_name = 'IMAGE'
-        verbose_name_plural = 'IMAGES'
+        verbose_name = 'КАРТНКА'
+        verbose_name_plural = 'КАРТИНКИ'
         ordering = ['image_number', 'place']
         unique_together = ['id', 'place', 'image']
