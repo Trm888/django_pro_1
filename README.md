@@ -62,7 +62,7 @@ python manage.py load_place 'путь к папке с файлами'
 ```
 Пример:
 ```sh
-python manage.py load_place 'where-to-go-places-master/places'
+python manage.py load_place 'examples_JSON_files_with_places'
 ```
 
 
